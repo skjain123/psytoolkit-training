@@ -1,3 +1,4 @@
+# Introduction!
 # ----------------------------------------------------------------------------------------------------------
 # This section is for getting set up!
 # 
@@ -13,10 +14,13 @@
 #    Click compile and run.
 # ----------------------------------------------------------------------------------------------------------
 
+# Notation Tips!
+# ----------------------------------------------------------------------------------------------------------
+# 1. You can NOT have spaces in a section, for example, if there was a space between origin center and fullscreen theres an error.
+# 2. Psytoolkit uses 2 spaces for indenting, so please change this setting on your vscode.
+# 3. Use blank comment lines to have spaces between code to IMPROVE READABILITY.
+# ----------------------------------------------------------------------------------------------------------
 
-# some general notation tips:
-# you can NOT have spaces in a section, for example, if there was a space between origin center and fullscreen theres an error.
-# also psytoolkit uses 2 spaces for indenting, so please change this setting on your vscode.
 
 # these are the options, they will almost never change throughout programs -- this is at the beginning of every experiment.
 options
@@ -27,6 +31,7 @@ options
   # check the psytoolkit docs for additional options.
 
 
+# Bitmaps!
 # ----------------------------------------------------------------------------------------------------------
 # these are images that we display in the experiment, you insert them in psytoolkit and write them here
 # we can reference the bitmaps we uploaded to psytoolkit using their names
@@ -48,6 +53,7 @@ bitmaps
 # ----------------------------------------------------------------------------------------------------------
 
 
+# Tasks
 # ----------------------------------------------------------------------------------------------------------
 # Tasks are like funcitons to be called. 
 # They will always have 
@@ -64,6 +70,7 @@ task helloWorld
 # ----------------------------------------------------------------------------------------------------------
 
 
+# Blocks!
 # ----------------------------------------------------------------------------------------------------------
 # blocks are kind of the "function calls"
 # the program looks for these only and then calls the tasks specified inside
@@ -81,6 +88,8 @@ block runHelloWorld
 
 # ----------------------------------------------------------------------------------------------------------
 
+
+# Your Task for this module!
 # ----------------------------------------------------------------------------------------------------------
 
 # Your task is to create a task that:
