@@ -1,0 +1,90 @@
+# ----------------------------------------------------------------------------------------------------------
+# This section is for getting set up!
+# 
+# 1. Create an experiment and name it whatever you like.
+#    Do this using the "Create Experiment" section on the left bar.
+#
+# 2. Upload the bitmaps (images to display on screen) that come in the same file as this
+#    Do this by clicking on the "View Files" Button next to the "Save Button"
+#    Then scroll down and click the "choose files" button and upload your bitmap.
+#
+# 3. View the code below this comment.
+# ----------------------------------------------------------------------------------------------------------
+
+
+# some general notation tips:
+# you can NOT have spaces in a section, for example, if there was a space between origin center and fullscreen theres an error.
+# also psytoolkit uses 2 spaces for indenting, so please change this setting on your vscode.
+
+# these are the options, they will almost never change throughout programs -- this is at the beginning of every experiment.
+options
+  origin center
+  fullscreen
+  resolution 1920 1080
+  startbutton text Click inside this red box to start.
+  # check the psytoolkit docs for additional options.
+
+
+# ----------------------------------------------------------------------------------------------------------
+# these are images that we display in the experiment, you insert them in psytoolkit and write them here
+# we can reference the bitmaps we uploaded to psytoolkit using their names
+bitmaps
+  # put bitmap1 filename here # 1
+  # put bitmap2 filename here # 2
+
+
+# Once you put the bitmap filenames in the bitmap section above.
+# You can reference them using thier filename OR by the order you put them in.
+# To reference the first bitmap, you would put a 1
+# To reference the second bitmap, you would put a 2
+#
+# Example [ showing bitmap at (x,y) coordinate ]:
+# show bitmap bitmap1 x y
+# show bitmap bitmap2 x y
+# show bitmap 1 x y
+# show bitmap 2 x y
+# ----------------------------------------------------------------------------------------------------------
+
+
+# ----------------------------------------------------------------------------------------------------------
+# Tasks are like funcitons to be called. 
+# They will always have 
+
+task helloWorld
+  # it is a good idea to clear the screen before every task.
+  clear screen 
+  #
+  # this is how to show text to the user at x=100 y=200
+  show text "hello world!" 100 200
+  delay 1000
+  #
+  clear screen # it is also a good idea to clear the screen after each block
+# ----------------------------------------------------------------------------------------------------------
+
+
+# ----------------------------------------------------------------------------------------------------------
+# blocks are kind of the "function calls"
+# the program looks for these only and then calls the tasks specified inside
+# tasks will not be run unless you call them in blocks
+
+block runHelloWorld
+  # list the tasks for the block to run.
+  # NOTE: if there is multiple tasks you want to run, the block will run them randomly.
+  #       So, if you want to run something before the current task-- like a setup task, 
+  #       then you have to create a separate block for that.
+  tasklist
+    # the number at the end of the task signifies how many times the task will be run.
+    helloWorld 1
+  end # psytoolkit has wierd notation that reqires end statements for most things-- in this case, the tasklist.
+
+# ----------------------------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------------------------
+
+# Your task is to create a task that:
+#     1. shows bitmap1 at x=100 y=0
+#     2. shows bitmap1 at x=-100 y=200
+#
+# And run that task one time with a block.
+#
+# ----------------------------------------------------------------------------------------------------------
