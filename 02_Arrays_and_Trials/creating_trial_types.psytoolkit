@@ -1,0 +1,175 @@
+# Introduction!
+# ----------------------------------------------------------------------------------------------------------
+# This section is for using conditional statements to create trial types!
+# 
+# 1. Create an experiment and name it whatever you like.
+#    Do this using the "Create Experiment" section on the left bar.
+#
+# 2. View the code below this comment and CopyPaste this into the Code section of your experiment.
+#    Click save
+#    Click compile and run.
+# ----------------------------------------------------------------------------------------------------------
+
+options
+  origin center
+  fullscreen
+  resolution 1920 1080
+  startbutton text Click inside this red box to start.
+  # check the psytoolkit docs for additional options.
+
+
+# Bitmaps!
+# ----------------------------------------------------------------------------------------------------------
+# these are images that we display in the experiment, you insert them in psytoolkit and write them here
+# we can reference the bitmaps we uploaded to psytoolkit using their names
+bitmaps
+  # put bitmap1 filename here # 1
+  # put bitmap2 filename here # 2
+
+# ----------------------------------------------------------------------------------------------------------
+
+
+# Tasks
+# ----------------------------------------------------------------------------------------------------------
+# You will be working with Arrays!
+# Arrays are denoted with && and are public-- meaning every task can access it.
+# To set an array with element 1:
+#                                   set &&Array 1
+#
+# To append to an array:
+#                                   set &&Array append 2
+# 
+# To append an array to an array: 
+#                                   set &&Array1 append &&Array2
+# 
+# To append a range of values 1-10: 
+#                                   set &&Array append range 1 10
+# 
+# To append multiple of the same number:
+#                                   set &&Array 1 times 10
+#                                   This will return an array with 10 ones in it.
+# 
+# Please check the documentation for more array functions!!!
+# 
+# Here is a sample of how I sorted trial types in one of my experiments:
+# 
+# I had 8 different TrialTypes
+# 1. I figured out how many of each trial type I needed from the project proposal I was given.
+# 2. 
+task trialTypes
+  clear screen 
+  #
+  # I initialized an array!
+  set &&trialArray clear
+  #
+  # From the project propsosal, I set how many of each trial I needed.
+  # Ex: I needed 5 trials of the following variable sets:
+  #    Go         = 1
+  #    setsize    = 9
+  #    singleton  = 1
+  set &&go9singleton 1 times 5
+  # 
+  # So I specified the trial type: 1
+  # And multiplied it by 5 using the times operator.
+  # Then later appended it to the trialArray!
+  # After getting all the trials in the trialArray, I used:
+  #                                                           set &&trialArray shuffle
+  # to randomly shuffle the trial types and sample them to get a random set of trials to run in the experiment.
+  # 
+  set &&go9nonsingleton 2 times 40
+  set &&go3singleton 3 times 3
+  set &&go3nonsingleton 4 times 6
+  set &&no9singleton 5 times 1
+  set &&no9nonsingleton 6 times 8
+  set &&no3singleton 7 times 2
+  set &&no3nonsingleton 8 times 4
+  #
+  #
+  # Append all the trials to singleton.
+  set &&trialArray append &&go9singleton
+  set &&trialArray append &&go9nonsingleton
+  set &&trialArray append &&go3singleton
+  set &&trialArray append &&go3nonsingleton
+  set &&trialArray append &&no9singleton
+  set &&trialArray append &&no9nonsingleton
+  set &&trialArray append &&no3singleton
+  set &&trialArray append &&no3nonsingleton
+  #
+  clear screen
+# ----------------------------------------------------------------------------------------------------------
+
+block printTrialArrayTask
+  # 1. Shuffle the trialArray to ensure randomness:
+  set &&trialArray shuffle
+  #
+  # 2. Get the length of the array:
+  set $trialArrayLen &&trialArrayLen size
+  # 
+  # Loop through the array as you would normally.
+  while $arrayLength != 0
+    # Since we shuffled, we can pop the first element into x to sample randomly.
+    set $x &&trialArray remove first
+    #
+    #
+    # In psytoolkit, there is no good way of printing to a console or printing to the screen.
+    # So you need to do this annoying thing:
+    if $x == 1
+      show text "go_9_singleton"
+    fi
+    if $x == 2
+      show text "go_9_nonsingleton"
+    fi
+    if $x == 3
+      show text "go_3_singleton"
+    fi
+    if $x == 4
+      show text "go_3_nonsingleton"
+    fi
+    if $x == 5
+      show text "no_9_singleton"
+    fi
+    if $x == 6
+      show text "no_9_nonsingleton"
+    fi
+    if $x == 7
+      show text "no_3_singleton"
+    fi
+    if $x == 8
+      show text "no_3_nonsingleton"
+    fi
+    delay 500
+    clear screen
+    set $arrayLength decrease # decrement the length to signify to end loop
+  while-end
+
+# Blocks!
+# ----------------------------------------------------------------------------------------------------------
+block setupTrialTypes
+  tasklist
+    trialTypes 1
+  end
+
+block printTrialArray
+  tasklist
+    printTrialArrayTask 1
+  end
+# ----------------------------------------------------------------------------------------------------------
+
+
+# Your Task for this module!
+# ----------------------------------------------------------------------------------------------------------
+
+# Your task is to create two tasks that:
+#     1. Create a trialArray that has 4 different trials
+#         Trialtype 1 -- 8 trials
+#         Trialtype 2 -- 5 trials
+#         Trialtype 3 -- 3 trials
+#         Trialtype 4 -- 2 trials
+#     2. Show the trial types to the screen.
+#         Trialtype 1 -- Display: Trial One
+#         Trialtype 2 -- Display: Trial Two
+#         Trialtype 3 -- Display: Trial Three
+#         Trialtype 4 -- Display: Trial Four
+#
+# Put your code below:
+# ----------------------------------------------------------------------------------------------------------
