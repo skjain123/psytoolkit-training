@@ -1,0 +1,143 @@
+# Introduction!
+# ----------------------------------------------------------------------------------------------------------
+# This section is for learning how to get participant input!
+# 
+# 1. Create an experiment and name it whatever you like.
+#    Do this using the "Create Experiment" section on the left bar.
+#
+# 2. Upload the bitmaps that come in the same file as this
+#    Do this by clicking on the "View Files" Button next to the "Save Button"
+#    Then scroll down and click the "choose files" button and upload your bitmap.
+#
+# 3. View the code below this comment and CopyPaste this into the Code section of your experiment.
+#    Click save
+#    Click compile and run.
+# ----------------------------------------------------------------------------------------------------------
+
+# Notation Tips!
+# ----------------------------------------------------------------------------------------------------------
+# 1. You can NOT have spaces in a section, for example, if there was a space between origin center and fullscreen theres an error.
+# 2. Psytoolkit uses 2 spaces for indenting, so please change this setting on your vscode.
+# 3. Use blank comment lines to have spaces between code to IMPROVE READABILITY.
+# ----------------------------------------------------------------------------------------------------------
+
+
+# these are the options, they will almost never change throughout programs -- this is at the beginning of every experiment.
+options
+  origin center
+  fullscreen
+  resolution 1920 1080
+  startbutton text Click inside this red box to start.
+  # check the psytoolkit docs for additional options.
+
+
+# Bitmaps!
+# ----------------------------------------------------------------------------------------------------------
+# these are images that we display in the experiment, you insert them in psytoolkit and write them here
+# we can reference the bitmaps we uploaded to psytoolkit using their names
+bitmaps
+  colorblindtest #      1
+
+
+# Once you put the bitmap filenames in the bitmap section above.
+# You can reference them using thier filename OR by the order you put them in.
+# To reference the first bitmap, you would put a 1
+# To reference the second bitmap, you would put a 2
+#
+# Example [ showing bitmap at (x,y) coordinate ]:
+# show bitmap bitmap1 x y
+# show bitmap bitmap2 x y
+# show bitmap 1 x y
+# show bitmap 2 x y
+# ----------------------------------------------------------------------------------------------------------
+
+
+# Tasks
+# ----------------------------------------------------------------------------------------------------------
+
+# The purpose of this task is to screen participant's using a colorblind test bitmap.
+# Here I display instructions and the colorblindness test.
+# Then I accept participant input with the following specifications:
+#       The participant can type 3 characters
+#       When displaying what the participant typed in, the spacing between letters is 15px
+#       When the participant is typing, display what they are typing at (0, 300)
+#       The program will wait for the participant's input for 100000 ms
+#       The program will accept the participant input when they press enter ("")
+#       The participant input will be stored in &colorblindnessInput
+
+task screenColorblindness
+  set $check 1
+  while $check == 1
+    show text "This is a colorblindness test! Please type the number in the image on the screen:"
+    show text "Once you have finished, press enter to move on" 0 100
+    show bitmap colorblindtest 0 -200
+    #
+    #
+    # This sets the amount of characters the participant can type in
+    readkeys option size 3
+    #
+    #
+    # This sets the spacing between the characters when displaying what they type
+    readkeys option space 15
+    #
+    #
+    # This displays what the participant is typing in at (0, 300)
+    readkeys option show 0 300
+    #
+    #
+    # This waits for participant input for 100000 ms
+    # The participant can submit thier input by pressing space, denoted by ("")
+    readkeys "" 100000
+    #
+    #
+    # Readkeys stores the input in variable "WORD"
+    set &colorblindnessInput WORD
+    set $check 0
+    if &colorblindnessInput == 29
+      set &validParticipant 1
+    else
+      clear screen
+      set &validParticipant 0
+      show text "You failed the colorblindness test."
+      show text "Once you have finished, press enter to move on" 0 100
+      delay 1000
+    fi
+    clear screen
+  while-end 
+  set %colorblindness &colorblindnessInput
+# ----------------------------------------------------------------------------------------------------------
+
+
+# Blocks!
+# ----------------------------------------------------------------------------------------------------------
+# blocks are kind of the "function calls"
+# the program looks for these only and then calls the tasks specified inside
+# tasks will not be run unless you call them in blocks
+
+block runColorBlindTest
+  # list the tasks for the block to run.
+  # NOTE: if there is multiple tasks you want to run, the block will run them randomly.
+  #       So, if you want to run something before the current task-- like a setup task, 
+  #       then you have to create a separate block for that.
+  tasklist
+    # the number at the end of the task signifies how many times the task will be run.
+    screenColorblindness 1
+  end # psytoolkit has wierd notation that reqires end statements for most things-- in this case, the tasklist.
+
+# ----------------------------------------------------------------------------------------------------------
+
+
+# Your Task for this module!
+# ----------------------------------------------------------------------------------------------------------
+
+# Your task is to create a task that:
+#     1. Prompts the participant for their name
+#     2. Gets the participant name
+#     3. Displays what the participant types at (100, 200)
+#     4. Have the display spacing be 30 px
+#     5. Have the readkeys wait for 2000 ms -> so the participant has to input fast
+#     6. Have the participant submit their input using the space key.
+#
+# And run that task one time with a block.
+#
+# ----------------------------------------------------------------------------------------------------------
