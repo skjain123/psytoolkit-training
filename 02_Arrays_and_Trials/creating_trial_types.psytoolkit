@@ -103,7 +103,7 @@ block printTrialArrayTask
   set &&trialArray shuffle
   #
   # 2. Get the length of the array:
-  set $trialArrayLen &&trialArrayLen size
+  set $arrayLength &&trialArray size
   # 
   # Loop through the array as you would normally.
   while $arrayLength != 0
