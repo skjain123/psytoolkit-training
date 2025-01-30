@@ -98,7 +98,7 @@ task trialTypes
   clear screen
 # ----------------------------------------------------------------------------------------------------------
 
-block printTrialArrayTask
+task printTrialArrayTask
   # 1. Shuffle the trialArray to ensure randomness:
   set &&trialArray shuffle
   #
